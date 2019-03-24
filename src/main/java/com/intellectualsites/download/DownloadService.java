@@ -28,6 +28,7 @@ import com.intellectualsites.configurable.ConfigurationFactory;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+import xyz.kvantum.server.api.logging.Logger;
 import xyz.kvantum.server.api.util.AutoCloseable;
 import xyz.kvantum.server.implementation.QuickStart;
 
@@ -39,7 +40,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class DownloadService extends AutoCloseable {
+class DownloadService extends AutoCloseable {
 
     public static void main(final String[] args) {
         new DownloadService();
@@ -108,6 +109,7 @@ public class DownloadService extends AutoCloseable {
     }
 
     @Override protected void handleClose() {
+        Logger.info("Closing the timer...");
         if (this.timer != null) {
             this.timer.cancel();
         }

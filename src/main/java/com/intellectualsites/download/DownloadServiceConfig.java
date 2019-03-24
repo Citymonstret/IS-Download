@@ -27,9 +27,9 @@ package com.intellectualsites.download;
 import com.intellectualsites.configurable.annotations.ConfigSection;
 import com.intellectualsites.configurable.annotations.Configuration;
 
-@Configuration public class DownloadServiceConfig {
+@SuppressWarnings("WeakerAccess") @Configuration public class DownloadServiceConfig {
 
-    @ConfigSection public static class Download {
+    @SuppressWarnings("CanBeFinal") @ConfigSection public static class Download {
         public static int buildLimit = 10;
         public static int refetchTime = 30 * 60; // fetch projects every 30 minutes
     }

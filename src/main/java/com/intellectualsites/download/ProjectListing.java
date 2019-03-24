@@ -36,6 +36,7 @@ import xyz.kvantum.server.api.views.annotatedviews.ViewMatcher;
 import xyz.kvantum.server.api.views.annotatedviews.converters.StandardConverters;
 
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Projects use the following format
@@ -44,7 +45,7 @@ import java.util.Map;
  * An example being the latest release build of PlotSquared 4.0 for Bukkit:
  * /PlotSquared/4/release/latest/bukkit
  */
-@RequiredArgsConstructor public class ProjectListing extends Node<Project> {
+@SuppressWarnings("unused") @RequiredArgsConstructor public class ProjectListing extends Node<Project> {
 
     private final Map<String, Project> projects;
 
@@ -75,7 +76,7 @@ import java.util.Map;
 
     @ViewMatcher(filter = "api/<project>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onProject(final AbstractRequest request) {
-        final String projectName = request.get("project").toString();
+        final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
         if (project == null) {
             return generateUnknown("project", projectName);
@@ -85,12 +86,12 @@ import java.util.Map;
 
     @ViewMatcher(filter = "api/<project>/<target>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onTarget(final AbstractRequest request) {
-        final String projectName = request.get("project").toString();
+        final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
         if (project == null) {
             return generateUnknown("project", projectName);
         }
-        final String targetName = request.get("target").toString();
+        final String targetName = Objects.requireNonNull(request.get("target")).toString();
         final Project.Target target = project.getChild(targetName);
         if (target == null) {
             return generateUnknown("target", targetName);
@@ -100,17 +101,17 @@ import java.util.Map;
 
     @ViewMatcher(filter = "api/<project>/<target>/<type>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onType(final AbstractRequest request) {
-        final String projectName = request.get("project").toString();
+        final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
         if (project == null) {
             return generateUnknown("project", projectName);
         }
-        final String targetName = request.get("target").toString();
+        final String targetName = Objects.requireNonNull(request.get("target")).toString();
         final Project.Target target = project.getChild(targetName);
         if (target == null) {
             return generateUnknown("target", targetName);
         }
-        final String typeName = request.get("type").toString();
+        final String typeName = Objects.requireNonNull(request.get("type")).toString();
         final Project.Type type = target.getChild(typeName);
         if (type == null) {
             return generateUnknown("type", targetName);
@@ -120,22 +121,22 @@ import java.util.Map;
 
     @ViewMatcher(filter = "api/<project>/<target>/<type>/<build>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onBuild(final AbstractRequest request) {
-        final String projectName = request.get("project").toString();
+        final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
         if (project == null) {
             return generateUnknown("project", projectName);
         }
-        final String targetName = request.get("target").toString();
+        final String targetName = Objects.requireNonNull(request.get("target")).toString();
         final Project.Target target = project.getChild(targetName);
         if (target == null) {
             return generateUnknown("target", targetName);
         }
-        final String typeName = request.get("type").toString();
+        final String typeName = Objects.requireNonNull(request.get("type")).toString();
         final Project.Type type = target.getChild(typeName);
         if (type == null) {
             return generateUnknown("type", targetName);
         }
-        final String buildName = request.get("build").toString();
+        final String buildName = Objects.requireNonNull(request.get("build")).toString();
         final Project.Type.Build build = type.getChild(buildName);
         if (build == null) {
             return generateUnknown("build", buildName);
@@ -145,27 +146,27 @@ import java.util.Map;
 
     @ViewMatcher(filter = "api/<project>/<target>/<type>/<build>/<version>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onVersion(final AbstractRequest request) {
-        final String projectName = request.get("project").toString();
+        final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
         if (project == null) {
             return generateUnknown("project", projectName);
         }
-        final String targetName = request.get("target").toString();
+        final String targetName = Objects.requireNonNull(request.get("target")).toString();
         final Project.Target target = project.getChild(targetName);
         if (target == null) {
             return generateUnknown("target", targetName);
         }
-        final String typeName = request.get("type").toString();
+        final String typeName = Objects.requireNonNull(request.get("type")).toString();
         final Project.Type type = target.getChild(typeName);
         if (type == null) {
             return generateUnknown("type", typeName);
         }
-        final String buildName = request.get("build").toString();
+        final String buildName = Objects.requireNonNull(request.get("build")).toString();
         final Project.Type.Build build = type.getChild(buildName);
         if (build == null) {
             return generateUnknown("build", buildName);
         }
-        final String versionName = request.get("version").toString();
+        final String versionName = Objects.requireNonNull(request.get("version")).toString();
         final Project.Type.Version version = build.getChild(versionName);
         if (version == null) {
             return generateUnknown("version", versionName);
@@ -175,27 +176,27 @@ import java.util.Map;
 
     @ViewMatcher(filter = "api/<project>/<target>/<type>/<build>/<version>/download", httpMethod = HttpMethod.ALL)
     public Response onDownload(final AbstractRequest request) {
-        final String projectName = request.get("project").toString();
+        final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
         if (project == null) {
             return generateUnknown404("project", projectName);
         }
-        final String targetName = request.get("target").toString();
+        final String targetName = Objects.requireNonNull(request.get("target")).toString();
         final Project.Target target = project.getChild(targetName);
         if (target == null) {
             return generateUnknown404("target", targetName);
         }
-        final String typeName = request.get("type").toString();
+        final String typeName = Objects.requireNonNull(request.get("type")).toString();
         final Project.Type type = target.getChild(typeName);
         if (type == null) {
             return generateUnknown404("type", typeName);
         }
-        final String buildName = request.get("build").toString();
+        final String buildName = Objects.requireNonNull(request.get("build")).toString();
         final Project.Type.Build build = type.getChild(buildName);
         if (build == null) {
             return generateUnknown404("build", buildName);
         }
-        final String versionName = request.get("version").toString();
+        final String versionName = Objects.requireNonNull(request.get("version")).toString();
         final Project.Type.Version version = build.getChild(versionName);
         if (version == null) {
             return generateUnknown404("version", versionName);

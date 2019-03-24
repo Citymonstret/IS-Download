@@ -161,7 +161,7 @@ public class Project extends Node<Project.Target> {
         /**
          * Repopulate the build list
          */
-        public void populateBuilds() throws Throwable {
+        void populateBuilds() throws Throwable {
             this.jobInfo = jenkins.getJobInfo(this.jobName).get();
             // this.builds.clear(); // Make sure it's emptied
             final int latest = this.jobInfo.getLastCompletedBuild().getNumber();
@@ -245,7 +245,7 @@ public class Project extends Node<Project.Target> {
         }
     }
 
-    @RequiredArgsConstructor public final class VersionSchema {
+    @RequiredArgsConstructor final class VersionSchema {
         private final String identifier;
         private final Pattern artifactPattern;
     }

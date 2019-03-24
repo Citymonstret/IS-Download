@@ -15,6 +15,7 @@ license {
 
 group 'com.intellectualsites'
 version '1.0-SNAPSHOT'
+//noinspection GroovyUnusedAssignment
 mainClassName = 'com.intellectualsites.download.DownloadService'
 
 jar {
@@ -25,7 +26,9 @@ jar {
     }
 }
 
+//noinspection GroovyUnusedAssignment
 sourceCompatibility = 1.10
+//noinspection GroovyUnusedAssignment
 targetCompatibility = 1.10
 
 repositories {
