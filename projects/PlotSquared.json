@@ -1,0 +1,53 @@
+{
+  "jenkins_base": "https://ci.athion.net/",
+  "targets": [
+    {
+      "identifier": "3",
+      "types": [
+        {
+          "job_name": "PlotSquared-Legacy",
+          "identifier": "dev",
+          "versions": [
+            {
+              "identifier": "bukkit",
+              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "nukkit",
+              "artifact_pattern": "^PlotSquared-Nukkit-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "sponge",
+              "artifact_pattern": "^PlotSquared-Sponge-(?<version>[A-Za-z0-9.-]+).jar$"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "4",
+      "types": [
+        {
+          "job_name": "PlotSquared-Breaking",
+          "identifier": "dev",
+          "versions": [
+            {
+              "identifier": "bukkit",
+              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[0-9.]+).jar$"
+            }
+          ]
+        },
+        {
+          "job_name": "PlotSquared-Releases",
+          "identifier": "release",
+          "versions": [
+            {
+              "identifier": "bukkit",
+              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[0-9.-]+).jar$"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

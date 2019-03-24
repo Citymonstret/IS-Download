@@ -1,0 +1,9 @@
+views:
+  std:
+    filter: '[file=index].[extension=html]'
+    options:
+      filePattern: ${file}.${extension}
+      folder: ./public
+      excludeExtensions:
+      - txt
+    type: std
