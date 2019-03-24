@@ -24,20 +24,14 @@
 
 package com.intellectualsites.download;
 
-import org.json.simple.JSONObject;
+import com.intellectualsites.configurable.annotations.ConfigSection;
+import com.intellectualsites.configurable.annotations.Configuration;
 
-public abstract class Node<T> {
+@Configuration public class DownloadServiceConfig {
 
-    protected abstract String getIdentifier();
-
-    protected abstract JSONObject generateJSON();
-
-    protected abstract T getChild(final String key);
-
-    public final JSONObject toJSON() {
-        final JSONObject jsonObject = this.generateJSON();
-        jsonObject.put("identifier", this.getIdentifier());
-        return jsonObject;
+    @ConfigSection public static class Download {
+        public static int buildLimit = 10;
+        public static int refetchTime = 30 * 60; // fetch projects every 30 minutes
     }
 
 }

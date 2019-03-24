@@ -1,3 +1,27 @@
+//
+// MIT License
+//
+// Copyright (c) 2019 Alexander Söderberg
+//
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
+//
+// The above copyright notice and this permission notice shall be included in all
+// copies or substantial portions of the Software.
+//
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+// SOFTWARE.
+//
+
 package com.intellectualsites.download;
 
 import lombok.Getter;
@@ -14,6 +38,7 @@ import xyz.kvantum.server.api.util.KvantumJsonFactory;
 import xyz.kvantum.server.api.util.MapBuilder;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 public class Project extends Node<Project.Target> {
@@ -57,7 +82,6 @@ public class Project extends Node<Project.Target> {
             final Target target = new Target(targetIdentifier, types);
             this.targets.put(targetIdentifier, target);
         }
-        System.out.println("Loading builds");
         this.loadBuilds();
     }
 
@@ -65,6 +89,11 @@ public class Project extends Node<Project.Target> {
      * Load, or reload builds
      */
     public void loadBuilds() {
+        try {
+            Logger.info("Loading builds...");
+        } catch (final NullPointerException e) {
+            System.out.println("Loading builds...");
+        }
         for (final Target target : this.targets.values()) {
             for (final Type type : target.types.values()) {
                 try {
@@ -126,28 +155,23 @@ public class Project extends Node<Project.Target> {
         private final String jobName;
         private final Map<String, VersionSchema> versionSchemas;
 
-        private final Map<String, Build> builds = new HashMap<>();
+        private final Map<String, Build> builds = new ConcurrentHashMap<>();
         private JobInfo jobInfo;
 
         /**
          * Repopulate the build list
          */
         public void populateBuilds() throws Throwable {
-            System.out.println("Reading job info");
             this.jobInfo = jenkins.getJobInfo(this.jobName).get();
-            this.builds.clear(); // Make sure it's emptied
+            // this.builds.clear(); // Make sure it's emptied
             final int latest = this.jobInfo.getLastCompletedBuild().getNumber();
-            System.out.println("Reading builds");
-
             List<BuildDescription> builds = new ArrayList<>(this.jobInfo.getBuilds());
             builds.sort(Comparator.comparing(BuildDescription::getNumber).reversed());
-            if (builds.size() > 10) {
-                builds = builds.subList(0, 10);
+            if (builds.size() > DownloadServiceConfig.Download.buildLimit) {
+                builds = builds.subList(0, DownloadServiceConfig.Download.buildLimit);
             }
-
             for (final BuildDescription buildDescription : builds) {
                 boolean isLatest = buildDescription.getNumber() == latest;
-                System.out.printf("Reading build info: %d\n", buildDescription.getNumber());
                 final BuildInfo buildInfo = buildDescription.getBuildInfo().get();
                 final Map<String, Version> versions = new HashMap<>();
                 schemaLoop: for (final Map.Entry<String, VersionSchema> versionSchema : this.versionSchemas.entrySet()) {
@@ -161,6 +185,7 @@ public class Project extends Node<Project.Target> {
                     }
                 }
                 final Build build = new Build(Integer.toString(buildInfo.getId()), versions);
+                // Replaces old mappings
                 this.builds.put(build.identifier, build);
                 if (isLatest) {
                     this.builds.put("latest", build);
