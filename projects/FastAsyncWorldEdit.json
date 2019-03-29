@@ -1,0 +1,77 @@
+{
+  "jenkins_base": "https://ci.athion.net/",
+  "targets": [
+    {
+      "identifier": "1.13+",
+      "types": [
+        {
+          "job_name": "FastAsyncWorldEdit-1.13",
+          "identifier": "dev",
+          "description": "Development builds for FastAsyncWorldEdit and FastAsyncVoxelSniper 1.13+",
+          "versions": [
+            {
+              "identifier": "bukkit",
+              "artifact_pattern": "^FastAsyncWorldEdit-bukkit-(?<version>[0-9.-]+).jar$"
+            },
+            {
+              "identifier": "favs",
+              "artifact_pattern": "^FastAsyncVoxelSniper-favs-(?<version>[0-9.-]+).jar$"
+              }
+          ]
+        }
+      ]
+    },
+    {
+      "identifier": "1.18-1.12.2",
+      "types": [
+        {
+          "job_name": "FastAsyncWorldEdit",
+          "identifier": "dev",
+          "description": "Legacy builds for FastAsyncWorldEdit and FastAsyncVoxelSniper <1.12.2",
+          "versions": [
+            {
+              "identifier": "bukkit",
+              "artifact_pattern": "^FastAsyncWorldEdit-bukkit-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "favs",
+              "artifact_pattern": "^FastAsyncVoxelSniper-favs-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "forge189",
+              "artifact_pattern": "^FastAsyncWorldEdit-forge189-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "forge194",
+              "artifact_pattern": "^FastAsyncWorldEdit-forge194-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "forge110",
+              "artifact_pattern": "^FastAsyncWorldEdit-forge110-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "forge111",
+              "artifact_pattern": "^FastAsyncWorldEdit-forge111-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "forge112",
+              "artifact_pattern": "^FastAsyncWorldEdit-forge112-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "sponge111",
+              "artifact_pattern": "^FastAsyncWorldEdit-sponge111-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "sponge112",
+              "artifact_pattern": "^FastAsyncWorldEdit-sponge112-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "nukkit",
+              "artifact_pattern": "^FastAsyncWorldEdit-nukkit-(?<version>[A-Za-z0-9.-]+).jar$"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
