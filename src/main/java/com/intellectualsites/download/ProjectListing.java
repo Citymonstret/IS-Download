@@ -68,12 +68,12 @@ import java.util.Objects;
         return object;
     }
 
-    @ViewMatcher(filter = "api", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
+    @ViewMatcher(filter = "download/api", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onRoot(final AbstractRequest request) {
         return generateSuccess(this.toJSON());
     }
 
-    @ViewMatcher(filter = "api/<project>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
+    @ViewMatcher(filter = "download/api/<project>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onProject(final AbstractRequest request) {
         final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
@@ -83,7 +83,7 @@ import java.util.Objects;
         return generateSuccess(project.toJSON());
     }
 
-    @ViewMatcher(filter = "api/<project>/<target>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
+    @ViewMatcher(filter = "download/api/<project>/<target>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onTarget(final AbstractRequest request) {
         final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
@@ -98,7 +98,7 @@ import java.util.Objects;
         return generateSuccess(target.toJSON());
     }
 
-    @ViewMatcher(filter = "api/<project>/<target>/<type>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
+    @ViewMatcher(filter = "download/api/<project>/<target>/<type>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onType(final AbstractRequest request) {
         final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
@@ -118,7 +118,7 @@ import java.util.Objects;
         return generateSuccess(type.toJSON());
     }
 
-    @ViewMatcher(filter = "api/<project>/<target>/<type>/<build>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
+    @ViewMatcher(filter = "download/api/<project>/<target>/<type>/<build>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onBuild(final AbstractRequest request) {
         final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
@@ -143,7 +143,7 @@ import java.util.Objects;
         return generateSuccess(build.toJSON());
     }
 
-    @ViewMatcher(filter = "api/<project>/<target>/<type>/<build>/<version>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
+    @ViewMatcher(filter = "download/api/<project>/<target>/<type>/<build>/<version>", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onVersion(final AbstractRequest request) {
         final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
@@ -173,7 +173,7 @@ import java.util.Objects;
         return generateSuccess(version.toJSON());
     }
 
-    @ViewMatcher(filter = "api/<project>/<target>/<type>/<build>/<version>/download", httpMethod = HttpMethod.ALL)
+    @ViewMatcher(filter = "download/api/<project>/<target>/<type>/<build>/<version>/download", httpMethod = HttpMethod.ALL)
     public Response onDownload(final AbstractRequest request) {
         final String projectName = Objects.requireNonNull(request.get("project")).toString();
         final Project project = getChild(projectName);
