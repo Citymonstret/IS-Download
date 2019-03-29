@@ -2,6 +2,33 @@
   "jenkins_base": "https://ci.athion.net/",
   "targets": [
     {
+      "identifier": "4",
+      "types": [
+        {
+          "job_name": "PlotSquared-Releases",
+          "identifier": "release",
+          "description": "Release builds for PlotSquared 1.13+. Requires WorldEdit 7 Beta-5!",
+          "versions": [
+            {
+              "identifier": "bukkit",
+              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[0-9.-]+).jar$"
+            }
+          ]
+        },
+        {
+          "job_name": "PlotSquared-Breaking",
+          "identifier": "dev",
+          "description": "Development builds for PlotSquared 1.13+. Requires WorldEdit 7 Beta-5!",
+          "versions": [
+            {
+              "identifier": "bukkit",
+              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[0-9.]+).jar$"
+            }
+          ]
+        }
+      ]
+    },
+    {
       "identifier": "3",
       "types": [
         {
@@ -20,33 +47,6 @@
             {
               "identifier": "sponge",
               "artifact_pattern": "^PlotSquared-Sponge-(?<version>[A-Za-z0-9.-]+).jar$"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "identifier": "4",
-      "types": [
-        {
-          "job_name": "PlotSquared-Breaking",
-          "identifier": "dev",
-          "description": "Development builds for PlotSquared 1.13+",
-          "versions": [
-            {
-              "identifier": "bukkit",
-              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[0-9.]+).jar$"
-            }
-          ]
-        },
-        {
-          "job_name": "PlotSquared-Releases",
-          "identifier": "release",
-          "description": "Release builds for PlotSquared 1.13+",
-          "versions": [
-            {
-              "identifier": "bukkit",
-              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[0-9.-]+).jar$"
             }
           ]
         }
