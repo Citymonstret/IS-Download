@@ -1,4 +1,4 @@
-var BASE_PATH = 'https://incendo.org/downloads/api/';
+var BASE_PATH = 'https://incendo.org/download/api/';
  
 var $projects;
 var $projectEntries;
