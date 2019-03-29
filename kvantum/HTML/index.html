@@ -1,0 +1,189 @@
+<!DOCTYPE HTML>
+<html lang="en" dir="ltr">
+    <head>
+         <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="57x57" href="https://incendo.org/assets/img/favicon/apple-icon-57x57.png">
+        <link rel="apple-touch-icon" sizes="60x60" href="https://incendo.org/assets/img/favicon/apple-icon-60x60.png">
+        <link rel="apple-touch-icon" sizes="72x72" href="https://incendo.org/assets/img/favicon/apple-icon-72x72.png">
+        <link rel="apple-touch-icon" sizes="76x76" href="https://incendo.org/assets/img/favicon/apple-icon-76x76.png">
+        <link rel="apple-touch-icon" sizes="114x114" href="https://incendo.org/assets/img/favicon/apple-icon-114x114.png">
+        <link rel="apple-touch-icon" sizes="120x120" href="https://incendo.org/assets/img/favicon/apple-icon-120x120.png">
+        <link rel="apple-touch-icon" sizes="144x144" href="https://incendo.org/assets/img/favicon/apple-icon-144x144.png">
+        <link rel="apple-touch-icon" sizes="152x152" href="https://incendo.org/assets/img/favicon/apple-icon-152x152.png">
+        <link rel="apple-touch-icon" sizes="180x180" href="https://incendo.org/assets/img/favicon/apple-icon-180x180.png">
+        <link rel="icon" type="image/png" sizes="192x192"  href="https://incendo.org/assets/img/favicon/android-icon-192x192.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="https://incendo.org/assets/img/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="96x96" href="https://incendo.org/assets/img/favicon/favicon-96x96.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="https://incendo.org/assets/img/favicon/favicon-16x16.png">
+        <link rel="manifest" href="https://incendo.org/assets/img/favicon/manifest.json">
+        <meta name="msapplication-TileColor" content="#fdfdfd">
+        <meta name="msapplication-TileImage" content="https://incendo.org/assets/img/favicon/ms-icon-144x144.png">
+        <meta name="theme-color" content="#fdfdfd">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=devide-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <title>Incendo Download Portal</title>
+        <style>
+            .themed-grid-col {
+                padding-top: 15px;
+                padding-bottom: 15px;
+                background-color: rgba(245, 245, 245, .15);
+                border: 1px solid rgba(86, 61, 124, .1);
+            }
+            html, body {
+                max-width: 100% !important;
+                width: 100%;
+                font-family: 'Montserrat', sans-serif;
+                scroll-behavior: smooth;
+            }
+            .logo {
+                text-align: center;
+                width: 100%;
+                padding: 10px;
+            }
+            .logo>img {
+                width: 50%;
+            }
+            .themed-grid-col:hover {
+                background-color: rgba(245, 245, 245, .60);
+            }
+            a:hover {
+                text-decoration: none;
+            }
+            a {
+                color: #001f3f7f;
+            }
+            #page_footer {
+                margin-top: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="logo">
+                    <img width="auto" src="https://incendo.org/assets/img/header_logo.png">
+            </div>
+        </div>
+        <!-- Project Picker -->
+        <div id="project-picker" class="container">
+            <div class="row" style="font-weight: bold">
+                <div class="col-8 themed-grid-col">
+                    Project
+                </div>
+                <div class="col-2 themed-grid-col">
+                    Target
+                </div>
+                <div class="col-2 themed-grid-col">
+                    Type
+                </div>
+            </div>
+            <div class='project-entry' id="project-entry" style="display:none">
+                <div class="row">
+                    <div data-toggle="tooltip" title="Click to show files..." class="col-8 themed-grid-col">
+                        <span class="entry-project"></span>
+                    </div>
+                    <div class="col-2 themed-grid-col">
+                        <span class="entry-target"></span>
+                    </div>
+                    <div class="col-2 themed-grid-col">
+                        <span class="entry-type"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Templates -->
+        <div id="projects" style="display:none">
+            <div id="project-display" class="container" style="display: none; text-align: center">
+                <div class="row" style="font-weight: bold">
+                    <div class="col-12 themed-grid-col button-outline">
+                        <span class="back-button">Back to project listing</span>
+                    </div>
+                </div>
+                <div class="row" style="font-weight: bold">
+                    <div class="col-12 themed-grid-col">
+                        <span class="project-title">title...</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 themed-grid-col">
+                        <span class="project-desc">desc</span>
+                    </div>
+                </div>
+                <div class="row" style="font-weight: bold">
+                    <div class="col-1 themed-grid-col">
+                        Version
+                    </div>
+                        
+                    <div class="col-1 themed-grid-col">
+                        Type
+                    </div>
+                    
+                    <div class="col-1 themed-grid-col">
+                        Build
+                    </div>
+                    
+                    <div class="col-3 themed-grid-col">
+                        Platform
+                    </div>
+
+                    <div class="col-6 themed-grid-col">
+                        File
+                    </div>
+                </div>
+            </div>
+            <div id="file-display" class="row" style="display:none;">
+                <div class="col-1 themed-grid-col">
+                    <span class="file-target">target...</span>
+                </div>
+                        
+                <div class="col-1 themed-grid-col">
+                    <span class="file-type">type...</span>
+                </div>
+
+                <div class="col-1 themed-grid-col">
+                    <span class="file-build">build...</span>
+                </div>
+                
+                <div class="col-3 themed-grid-col">
+                    <span class="file-version">platform...</span>
+                </div>
+
+                <div class="col-6 themed-grid-col">
+                    <span class="file-file">file</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div id="page_footer">
+            <footer>
+                <div class="container">
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <h6>Incendo<br>
+                                <span class="text-muted">By <a data-external="true" href="https://github.com/sauilitired">Sauilitired</a>.
+                                    Copyright &copy; 2019
+                                </span>
+                            </h6>
+                        </div>
+                        <div class="col">
+                            <h6>Technology<br>
+                                <span class="text-muted">Running on 
+                                    <a data-external="true" href="https://github.com/sauilitired/Kvantum" data-toggle="tooltip" title="Web server developed by Incendo">Kvantum</a>. 
+                                    Version: <a onclick="new function() {alert('This version isn\'t available for download.');}" data-internal="true" data-toggle="tooltip" title="Development Version">in-dev</a></span>
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+        <script src="/assets/js/main.js"></script>
+    </body>
+</html>

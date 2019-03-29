@@ -1,0 +1,13 @@
+views:
+  f52fe2df-4a92-4bb7-9279-7c1230c70a64:
+    filter: '[file=index].[extension=html]'
+    options:
+      folder: ./HTML/
+      cacheApplicable: true
+    type: html
+  9139a02d-41c4-410c-9fd5-c558e2c0b561:
+    filter: assets/js/<file>.js
+    options:
+      folder: ./HTML/assets/js/
+      cacheApplicable: true
+    type: javascript

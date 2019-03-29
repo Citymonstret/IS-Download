@@ -38,7 +38,6 @@ import xyz.kvantum.server.api.util.KvantumJsonFactory;
 import xyz.kvantum.server.api.util.MapBuilder;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.regex.Pattern;
 
 public class Project extends Node<Project.Target> {
@@ -76,7 +75,7 @@ public class Project extends Node<Project.Target> {
                     final VersionSchema versionSchema = new VersionSchema(versionIdentifier, versionPattern);
                     versionSchemas.put(versionIdentifier, versionSchema);
                 }
-                final Type type = new Type(typeIdentifier, typeJobName, versionSchemas);
+                final Type type = new Type(typeIdentifier, typeJobName, typeJSON.getOrDefault("description", "").toString(), versionSchemas);
                 types.put(typeIdentifier, type);
             }
             final Target target = new Target(targetIdentifier, types);
@@ -127,7 +126,8 @@ public class Project extends Node<Project.Target> {
 
     @Override public JSONObject generateJSON() {
         return KvantumJsonFactory.toJSONObject(
-            MapBuilder.<String, Object>newHashMap().put("builds", this.targets.keySet()).get());
+            MapBuilder.<String, Object>newHashMap().put("targets",
+                KvantumJsonFactory.toJsonArray(this.targets.keySet())).get());
     }
 
     @RequiredArgsConstructor public final class Target extends Node<Type> {
@@ -141,7 +141,8 @@ public class Project extends Node<Project.Target> {
 
         @Override protected JSONObject generateJSON() {
             return KvantumJsonFactory.toJSONObject(
-                MapBuilder.<String, Object>newHashMap().put("types", this.types.keySet()).get());
+                MapBuilder.<String, Object>newHashMap().put("types",
+                    KvantumJsonFactory.toJsonArray(this.types.keySet())).get());
         }
 
         @Override protected Type getChild(String key) {
@@ -153,9 +154,10 @@ public class Project extends Node<Project.Target> {
 
         private final String identifier;
         private final String jobName;
+        private final String description;
         private final Map<String, VersionSchema> versionSchemas;
 
-        private final Map<String, Build> builds = new ConcurrentHashMap<>();
+        private final Map<String, Build> builds = Collections.synchronizedMap(new TreeMap<>());
         private JobInfo jobInfo;
 
         /**
@@ -170,17 +172,18 @@ public class Project extends Node<Project.Target> {
             if (builds.size() > DownloadServiceConfig.Download.buildLimit) {
                 builds = builds.subList(0, DownloadServiceConfig.Download.buildLimit);
             }
+            Build latestBuild = null;
             for (final BuildDescription buildDescription : builds) {
                 boolean isLatest = buildDescription.getNumber() == latest;
                 final BuildInfo buildInfo = buildDescription.getBuildInfo().get();
                 final Map<String, Version> versions = new HashMap<>();
                 schemaLoop: for (final Map.Entry<String, VersionSchema> versionSchema : this.versionSchemas.entrySet()) {
-                    for (final ArtifactDescription description : buildInfo.getArtifacts()) {
+                    artifactLoop: for (final ArtifactDescription description : buildInfo.getArtifacts()) {
                         if (versionSchema.getValue().artifactPattern.matcher(description.getFileName()).matches()) {
                             final Version version = new Version(versionSchema.getKey(),
                                 description.getFileName(), description.getUrl());
                             versions.put(versionSchema.getKey(), version);
-                            break schemaLoop;
+                            break artifactLoop;
                         }
                     }
                 }
@@ -188,8 +191,11 @@ public class Project extends Node<Project.Target> {
                 // Replaces old mappings
                 this.builds.put(build.identifier, build);
                 if (isLatest) {
-                    this.builds.put("latest", build);
+                    latestBuild = build;
                 }
+            }
+            if (latestBuild != null) {
+                this.builds.put("latest", latestBuild);
             }
         }
 
@@ -199,7 +205,8 @@ public class Project extends Node<Project.Target> {
 
         @Override protected JSONObject generateJSON() {
             return KvantumJsonFactory.toJSONObject(
-                MapBuilder.<String, Object>newHashMap().put("builds", this.builds.keySet()).get());
+                MapBuilder.<String, Object>newHashMap().put("builds",
+                    KvantumJsonFactory.toJsonArray(this.builds.keySet())).put("description", description).get());
         }
 
         @Override protected Build getChild(String key) {
@@ -216,7 +223,8 @@ public class Project extends Node<Project.Target> {
 
             @Override protected JSONObject generateJSON() {
                 return KvantumJsonFactory.toJSONObject(
-                    MapBuilder.<String, Object>newHashMap().put("versions", this.versions.keySet()).get());
+                    MapBuilder.<String, Object>newHashMap().put("versions",
+                        KvantumJsonFactory.toJsonArray(this.versions.keySet())).get());
             }
 
             @Override protected Version getChild(final String key) {

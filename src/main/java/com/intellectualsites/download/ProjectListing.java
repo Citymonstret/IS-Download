@@ -68,7 +68,6 @@ import java.util.Objects;
         return object;
     }
 
-
     @ViewMatcher(filter = "api", httpMethod = HttpMethod.ALL, outputType = StandardConverters.JSON)
     public JSONObject onRoot(final AbstractRequest request) {
         return generateSuccess(this.toJSON());
@@ -213,7 +212,8 @@ import java.util.Objects;
 
     @Override protected JSONObject generateJSON() {
         return KvantumJsonFactory.toJSONObject(
-            MapBuilder.<String, Object>newHashMap().put("projects", this.projects.keySet()).get());
+            MapBuilder.<String, Object>newHashMap().put("projects",
+                KvantumJsonFactory.toJsonArray(this.projects.keySet())).get());
     }
 
     @Override protected Project getChild(final String key) {
