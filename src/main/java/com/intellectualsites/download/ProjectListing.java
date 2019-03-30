@@ -210,6 +210,10 @@ import java.util.Objects;
         return "projects";
     }
 
+    @Override protected String getDisplayName() {
+        return this.getIdentifier();
+    }
+
     @Override protected JSONObject generateJSON() {
         return KvantumJsonFactory.toJSONObject(
             MapBuilder.<String, Object>newHashMap().put("projects",

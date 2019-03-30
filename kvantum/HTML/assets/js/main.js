@@ -16,14 +16,16 @@ function loadProjects() {
         let projects = JSON.parse(projectsRaw);
         projects.forEach(project => {
             readTargets(project, function(targetsRaw) {
-                let targets = JSON.parse(targetsRaw);
+                let projectDisplayName = targetsRaw.display_name;
+                let targets = JSON.parse(targetsRaw.targets);
                 targets.forEach(target => {
                     readTypes(project, target, function(typesRaw) {
-                        let types = JSON.parse(typesRaw);
+                        let targetDisplayName = typesRaw.display_name;
+                        let types = JSON.parse(typesRaw.types);
                         types.forEach(type => {
                             let projectEntry = getProjectEntry(project, target, type);
-                            projectEntry.find('.entry-project').text(project);
-                            projectEntry.find('.entry-target').text(target);
+                            projectEntry.find('.entry-project').text(projectDisplayName);
+                            projectEntry.find('.entry-target').text(targetDisplayName);
                             projectEntry.find('.entry-type').text(type);
                             projectEntry.attr('data-project', project);
                             projectEntry.attr('data-target', target);
@@ -54,14 +56,15 @@ function loadProjects() {
                                         let builds = JSON.parse(buildsRaw.builds).reverse();
                                         builds.forEach(build => {
                                             readVersions(project, target, type, build, function(versionsRaw) {
-                                                let versions = JSON.parse(versionsRaw);
+                                                let buildDisplayName = versionsRaw.display_name;
+                                                let versions = JSON.parse(versionsRaw.versions);
                                                 versions.forEach(version => {
                                                     readFile(project, target, type, build, version, function(fileData) {
                                                         let fileDisplay = getFileDisplay(fileData.fileName);
-                                                        fileDisplay.find('.file-build').text(build);
-                                                        fileDisplay.find('.file-target').text(target);
+                                                        fileDisplay.find('.file-build').text(buildDisplayName);
+                                                        fileDisplay.find('.file-target').text(targetDisplayName);
                                                         fileDisplay.find('.file-type').text(type);
-                                                        fileDisplay.find('.file-version').text(version);
+                                                        fileDisplay.find('.file-version').text(fileData.display_name);
                                                         fileDisplay.find('.file-file').html(`<a href="${fileData.download}" data-toggle="tooltip" title="Download via Jenkins">${fileData.fileName}`);
                                                         $display.append(fileDisplay);
                                                         $('[data-toggle="tooltip"]').tooltip()
@@ -118,7 +121,7 @@ function readFile(projectName, targetName, typeName, buildName, versionName, suc
 
 function readVersions(projectName, targetName, typeName, buildName, successf) {
     read(`${projectName}/${targetName}/${typeName}/${buildName}`, function(data) {
-        successf(data.versions);
+        successf(data);
     })
 }
 
@@ -130,13 +133,13 @@ function readBuilds(projectName, targetName, typeName, successf) {
 
 function readTypes(projectName, targetName, successf) {
     read(`${projectName}/${targetName}`, function(data) {
-        successf(data.types);
+        successf(data);
     })
 }
 
 function readTargets(projectName, successf) {
     read(projectName, function(data) {
-        successf(data.targets);
+        successf(data);
     });
 }
 

@@ -30,12 +30,16 @@ abstract class Node<T> {
 
     protected abstract String getIdentifier();
 
+    protected abstract String getDisplayName();
+
     protected abstract JSONObject generateJSON();
 
     @SuppressWarnings("unused") protected abstract T getChild(final String key);
 
     final JSONObject toJSON() {
         final JSONObject jsonObject = this.generateJSON();
+        final String displayName = this.getDisplayName();
+        jsonObject.put("display_name", displayName == null ? this.getIdentifier() : displayName);
         jsonObject.put("identifier", this.getIdentifier());
         return jsonObject;
     }

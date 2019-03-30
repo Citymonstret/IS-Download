@@ -1,8 +1,10 @@
 {
     "jenkins_base": "https://ci.athion.net/",
+    "display_name": "FastAsyncWorldEdit",,
     "targets": [
       {
         "identifier": "new",
+        "display_name": "1.13",
         "types": [
           {
             "job_name": "FastAsyncWorldEdit-1.13",
@@ -11,10 +13,12 @@
             "versions": [
               {
                 "identifier": "bukkit",
+                "display_name": "Bukkit",
                 "artifact_pattern": "^FastAsyncWorldEdit-bukkit-(?<version>[0-9.-]+).jar$"
               },
               {
                 "identifier": "bukkit-FastAsyncVoxelSniper",
+                "display_name": "Bukkit-FastAsyncVoxelSniper",
                 "artifact_pattern": "^FastAsyncVoxelSniper-favs-(?<version>[0-9.-]+).jar$"
                 }
             ]
@@ -23,6 +27,7 @@
       },
       {
         "identifier": "legacy",
+        "display_name": "1.8 to 1.12.2",
         "types": [
           {
             "job_name": "FastAsyncWorldEdit",
@@ -31,42 +36,52 @@
             "versions": [
               {
                 "identifier": "bukkit",
+                "display_name": "Bukkit",
                 "artifact_pattern": "^FastAsyncWorldEdit-bukkit-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "bukkit-FastAsyncVoxelSniper",
+                "display_name": "Bukkit-FastAsyncVoxelSniper",
                 "artifact_pattern": "^FastAsyncVoxelSniper-favs-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "forge-189",
+                "display_name": "Forge-1.8.9",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge189-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "forge-194",
+                "display_name": "Forge-1.9.4",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge194-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "forge-110",
+                "display_name": "Forge-1.10",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge110-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "forge-111",
+                "display_name": "Forge-1.11",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge111-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "forge-112",
+                "display_name": "Forge-1.12",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge112-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "sponge-111",
+                "display_name": "Sponge-1.11",
                 "artifact_pattern": "^FastAsyncWorldEdit-sponge111-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "sponge-112",
+                "display_name": "Sponge-1.12",
                 "artifact_pattern": "^FastAsyncWorldEdit-sponge112-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
                 "identifier": "nukkit",
+                "display_name": "Nukkit",
                 "artifact_pattern": "^FastAsyncWorldEdit-nukkit-(?<version>[A-Za-z0-9.-]+).jar$"
               }
             ]

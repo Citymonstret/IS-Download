@@ -45,40 +45,45 @@ public class Project extends Node<Project.Target> {
     private final Jenkins jenkins;
     private final String identifier;
     private final Map<String, Target> targets;
+    @Getter private final String displayName;
 
     public Project(final String name, final JSONObject schema) {
         this.jenkins = Jenkins.newBuilder().withPath(schema.get("jenkins_base").toString()).build();
         this.identifier = name.toLowerCase();
-        this.targets = new HashMap<>();
+        this.displayName = schema.getOrDefault("display_name", this.identifier).toString();
+        this.targets = new TreeMap<>();
         if (!schema.containsKey("targets")) {
             throw new IllegalArgumentException("Schema does not contain target");
         }
         for (final Object targetObject : (JSONArray) schema.get("targets")) {
             final JSONObject targetJSON = (JSONObject) targetObject;
             final String targetIdentifier = targetJSON.get("identifier").toString();
+            final String targetDisplayName = targetJSON.getOrDefault("display_name", targetIdentifier).toString();
             if (!targetJSON.containsKey("types")) {
                 throw new IllegalArgumentException("Schema does not contain type");
             }
-            final Map<String, Type> types = new HashMap<>();
+            final Map<String, Type> types = new TreeMap<>();
             for (final Object typeObject : (JSONArray) targetJSON.get("types")) {
                 final JSONObject typeJSON = (JSONObject) typeObject;
                 final String typeIdentifier = typeJSON.get("identifier").toString();
                 final String typeJobName = typeJSON.get("job_name").toString();
+                final String typeDisplayName = typeJSON.getOrDefault("display_name", typeIdentifier).toString();
                 if (!typeJSON.containsKey("versions")) {
                     throw new IllegalArgumentException("Schema does not contain versions");
                 }
-                final Map<String, VersionSchema> versionSchemas = new HashMap<>();
+                final Map<String, VersionSchema> versionSchemas = new TreeMap<>();
                 for (final Object versionObject : (JSONArray) typeJSON.get("versions")) {
                     final JSONObject versionJSON = (JSONObject) versionObject;
                     final String versionIdentifier = versionJSON.get("identifier").toString();
                     final Pattern versionPattern = Pattern.compile(versionJSON.get("artifact_pattern").toString());
-                    final VersionSchema versionSchema = new VersionSchema(versionIdentifier, versionPattern);
+                    final String displayName = versionJSON.getOrDefault("display_name", versionIdentifier).toString();
+                    final VersionSchema versionSchema = new VersionSchema(versionIdentifier, versionPattern, displayName);
                     versionSchemas.put(versionIdentifier, versionSchema);
                 }
-                final Type type = new Type(typeIdentifier, typeJobName, typeJSON.getOrDefault("description", "").toString(), versionSchemas);
+                final Type type = new Type(typeIdentifier, typeJobName, typeJSON.getOrDefault("description", "").toString(), displayName, versionSchemas);
                 types.put(typeIdentifier, type);
             }
-            final Target target = new Target(targetIdentifier, types);
+            final Target target = new Target(targetIdentifier, targetDisplayName, types);
             this.targets.put(targetIdentifier, target);
         }
         this.loadBuilds();
@@ -126,13 +131,14 @@ public class Project extends Node<Project.Target> {
 
     @Override public JSONObject generateJSON() {
         return KvantumJsonFactory.toJSONObject(
-            MapBuilder.<String, Object>newHashMap().put("targets",
+            MapBuilder.<String, Object>newTreeMap().put("targets",
                 KvantumJsonFactory.toJsonArray(this.targets.keySet())).get());
     }
 
     @RequiredArgsConstructor public final class Target extends Node<Type> {
 
         private final String identifier;
+        @Getter private final String displayName;
         private final Map<String, Type> types;
 
         @Override protected String getIdentifier() {
@@ -141,7 +147,7 @@ public class Project extends Node<Project.Target> {
 
         @Override protected JSONObject generateJSON() {
             return KvantumJsonFactory.toJSONObject(
-                MapBuilder.<String, Object>newHashMap().put("types",
+                MapBuilder.<String, Object>newTreeMap().put("types",
                     KvantumJsonFactory.toJsonArray(this.types.keySet())).get());
         }
 
@@ -155,6 +161,7 @@ public class Project extends Node<Project.Target> {
         private final String identifier;
         private final String jobName;
         private final String description;
+        @Getter private final String displayName;
         private final Map<String, VersionSchema> versionSchemas;
 
         private final Map<String, Build> builds = Collections.synchronizedMap(new TreeMap<>());
@@ -176,18 +183,18 @@ public class Project extends Node<Project.Target> {
             for (final BuildDescription buildDescription : builds) {
                 boolean isLatest = buildDescription.getNumber() == latest;
                 final BuildInfo buildInfo = buildDescription.getBuildInfo().get();
-                final Map<String, Version> versions = new HashMap<>();
+                final Map<String, Version> versions = new TreeMap<>();
                 schemaLoop: for (final Map.Entry<String, VersionSchema> versionSchema : this.versionSchemas.entrySet()) {
                     artifactLoop: for (final ArtifactDescription description : buildInfo.getArtifacts()) {
                         if (versionSchema.getValue().artifactPattern.matcher(description.getFileName()).matches()) {
                             final Version version = new Version(versionSchema.getKey(),
-                                description.getFileName(), description.getUrl());
+                                description.getFileName(), description.getUrl(), versionSchema.getValue().getDisplayName());
                             versions.put(versionSchema.getKey(), version);
                             break artifactLoop;
                         }
                     }
                 }
-                final Build build = new Build(Integer.toString(buildInfo.getId()), versions);
+                final Build build = new Build(Integer.toString(buildInfo.getId()), versions, Integer.toString(buildInfo.getId()));
                 // Replaces old mappings
                 this.builds.put(build.identifier, build);
                 if (isLatest) {
@@ -205,7 +212,7 @@ public class Project extends Node<Project.Target> {
 
         @Override protected JSONObject generateJSON() {
             return KvantumJsonFactory.toJSONObject(
-                MapBuilder.<String, Object>newHashMap().put("builds",
+                MapBuilder.<String, Object>newTreeMap().put("builds",
                     KvantumJsonFactory.toJsonArray(this.builds.keySet())).put("description", description).get());
         }
 
@@ -216,6 +223,7 @@ public class Project extends Node<Project.Target> {
         @RequiredArgsConstructor public final class Build extends Node<Version> {
             private final String identifier;
             private final Map<String, Version> versions;
+            @Getter private final String displayName;
 
             @Override protected String getIdentifier() {
                 return this.identifier;
@@ -223,7 +231,7 @@ public class Project extends Node<Project.Target> {
 
             @Override protected JSONObject generateJSON() {
                 return KvantumJsonFactory.toJSONObject(
-                    MapBuilder.<String, Object>newHashMap().put("versions",
+                    MapBuilder.<String, Object>newTreeMap().put("versions",
                         KvantumJsonFactory.toJsonArray(this.versions.keySet())).get());
             }
 
@@ -236,6 +244,7 @@ public class Project extends Node<Project.Target> {
             private final String identifier;
             private final String fileName;
             @Getter private final String downloadUrl;
+            @Getter private final String displayName;
 
             @Override protected String getIdentifier() {
                 return this.identifier;
@@ -243,7 +252,7 @@ public class Project extends Node<Project.Target> {
 
             @Override protected JSONObject generateJSON() {
                 return KvantumJsonFactory.toJSONObject(
-                    MapBuilder.<String, Object>newHashMap().put("fileName", this.fileName)
+                    MapBuilder.<String, Object>newTreeMap().put("fileName", this.fileName)
                         .put("download", this.downloadUrl).get());
             }
 
@@ -256,6 +265,7 @@ public class Project extends Node<Project.Target> {
     @RequiredArgsConstructor final class VersionSchema {
         private final String identifier;
         private final Pattern artifactPattern;
+        @Getter private final String displayName;
     }
 
 }

@@ -1,11 +1,14 @@
 {
   "jenkins_base": "https://ci.athion.net/",
+  "display_name": "PlotSquared",
   "targets": [
     {
       "identifier": "new",
+      "display_name": "1.13+",
       "types": [
         {
           "job_name": "PlotSquared-Releases",
+          "display_name": "Release Builds",
           "identifier": "release",
           "description": "Release builds for PlotSquared 1.13+. Requires WorldEdit 7 Beta-5!",
           "versions": [
@@ -17,6 +20,7 @@
         },
         {
           "job_name": "PlotSquared-Breaking",
+          "display_name": "Development Builds",
           "identifier": "dev",
           "description": "Development builds for PlotSquared 1.13+. Requires WorldEdit 7 Beta-5!",
           "versions": [
@@ -30,10 +34,12 @@
     },
     {
       "identifier": "legacy",
+      "display_name": "1.8 to 1.12",
       "types": [
         {
           "job_name": "PlotSquared-Legacy",
           "identifier": "dev",
+          "display_name": "Development Builds",
           "description": "Development builds for PlotSquared <1.12",
           "versions": [
             {
