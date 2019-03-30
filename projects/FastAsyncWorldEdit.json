@@ -38,31 +38,31 @@
                 "artifact_pattern": "^FastAsyncVoxelSniper-favs-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
-                "identifier": "forge-1.8.9",
+                "identifier": "forge-189",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge189-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
-                "identifier": "forge-1.9.4",
+                "identifier": "forge-194",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge194-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
-                "identifier": "forge-1.10",
+                "identifier": "forge-110",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge110-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
-                "identifier": "forge-1.11",
+                "identifier": "forge-111",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge111-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
-                "identifier": "forge-1.12",
+                "identifier": "forge-112",
                 "artifact_pattern": "^FastAsyncWorldEdit-forge112-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
-                "identifier": "sponge-1.11",
+                "identifier": "sponge-111",
                 "artifact_pattern": "^FastAsyncWorldEdit-sponge111-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
-                "identifier": "sponge-1.12",
+                "identifier": "sponge-112",
                 "artifact_pattern": "^FastAsyncWorldEdit-sponge112-(?<version>[A-Za-z0-9.-]+).jar$"
               },
               {
