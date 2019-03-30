@@ -194,15 +194,19 @@ public class Project extends Node<Project.Target> {
                         }
                     }
                 }
-                final Build build = new Build(Integer.toString(buildInfo.getId()), versions, Integer.toString(buildInfo.getId()));
+                // final Build build = new Build(Integer.toString(buildInfo.getId()), versions, Integer.toString(buildInfo.getId()));
                 // Replaces old mappings
-                this.builds.put(build.identifier, build);
+                // this.builds.put(build.identifier, build);
+                // if (isLatest) {
+                //    latestBuild = build;
+                // }
+                final Build build;
                 if (isLatest) {
-                    latestBuild = build;
+                    build = new Build("latest", versions, "latest");
+                } else {
+                    build = new Build(Integer.toString(buildInfo.getId()), versions, Integer.toString(buildInfo.getId()));
                 }
-            }
-            if (latestBuild != null) {
-                this.builds.put("latest", latestBuild);
+                this.builds.put(build.identifier, build);
             }
         }
 
