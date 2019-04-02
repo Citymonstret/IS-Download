@@ -55,7 +55,7 @@
               "    * **Sponge 1.11/1.12:** Do *not* install WorldEdit",
               "    * **Thermos:** Download [WorldEdit (mod)](https://minecraft.curseforge.com/projects/worldedit/files/2309699) and put in *mods*, then download [WorldEdit (plugin)](https://dev.bukkit.org/projects/worldedit/files/880435/download) and put it in *plugins*",
               "2. Download any optional dependencies",
-              "    * [Web Iterface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
+              "    * [Web Interface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
               "    * [Asset Interface](https://empcraft.com/assetpack/source.zip) - To host private assets",
               "3. Configure the plugin.",
               "    * **Spigot/Nukkit:** You can find the configuration file at `/plugins/FastAsyncWorldEdit/config.yml`",
