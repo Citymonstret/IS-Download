@@ -10,6 +10,15 @@
             "job_name": "FastAsyncWorldEdit-1.13",
             "identifier": "dev",
             "description": "Development builds for FastAsyncWorldEdit and FastAsyncVoxelSniper 1.13+",
+            "wiki": [
+              "1. Download FAWE (and optionally FAVS) using one of the links above.",
+              "    * **Spigot:** Do *not* install WorldEdit",
+              "2. Download any optional dependencies",
+              "    * [Web Iterface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
+              "    * [Asset Interface](https://empcraft.com/assetpack/source.zip) - To host private assets",
+              "3. Configure the plugin. You can find the configuration file at `/plugins/FastAsyncWorldEdit/config.yml`",
+              "4. Give players the required permissions: [[General FAWE permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Permissions)], [[FAWE Commands / Commands permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Commands)]"
+            ],
             "versions": [
               {
                 "identifier": "bukkit",
@@ -33,6 +42,26 @@
             "job_name": "FastAsyncWorldEdit",
             "identifier": "dev",
             "description": "Legacy builds for FastAsyncWorldEdit and FastAsyncVoxelSniper <1.12.2",
+            "wiki": [
+              "1. Download FAWE (and optionally FAVS) using one of the links above.",
+              "    * **Spigot:** WorldEdit & VoxelSniper will be installed automatically",
+              "    * **Nukkit (MCPE):** Also install [DBLib](https://github.com/fromgate/DbLib/releases)",
+              "    * **Forge 1.12:** Download [WorldEdit for 1.12](https://minecraft.curseforge.com/projects/worldedit/files/2460570), put it in *mods*",
+              "    * **Forge 1.11:** Download [WorldEdit for 1.11](https://minecraft.curseforge.com/projects/worldedit/files/2355945), put it in *mods*",
+              "    * **Forge 1.10:** Download [WorldEdit for 1.10](https://minecraft.curseforge.com/projects/worldedit/files/2328371), put it in *mods*",
+              "    * **Forge 1.9.4:** Download [WorldEdit for 1.9.4](https://minecraft.curseforge.com/projects/worldedit/files/2309681), put it in *mods*",
+              "    * **Forge 1.8.9:** Download [WorldEdit for 1.8.9](https://minecraft.curseforge.com/projects/worldedit/files/2275930), put it in *mods*",
+              "    * **Forge 1.7.10:** Download [WorldEdit for 1.7.10](https://minecraft.curseforge.com/projects/worldedit/files/2275930), put it in *mods*",
+              "    * **Sponge 1.11/1.12:** Do *not* install WorldEdit",
+              "    * **Thermos:** Download [WorldEdit (mod)](https://minecraft.curseforge.com/projects/worldedit/files/2309699) and put in *mods*, then download [WorldEdit (plugin)](https://dev.bukkit.org/projects/worldedit/files/880435/download) and put it in *plugins*",
+              "2. Download any optional dependencies",
+              "    * [Web Iterface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
+              "    * [Asset Interface](https://empcraft.com/assetpack/source.zip) - To host private assets",
+              "3. Configure the plugin.",
+              "    * **Spigot/Nukkit:** You can find the configuration file at `/plugins/FastAsyncWorldEdit/config.yml`",
+              "    * **Others:** You can find the configuration file at `config/FastAsyncWorldEdit/config.yml`",
+              "4. Give players the required permissions: [[General FAWE permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Permissions)], [[FAWE Commands / Commands permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Commands)]"
+            ],
             "versions": [
               {
                 "identifier": "bukkit",

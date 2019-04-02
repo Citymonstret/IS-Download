@@ -11,6 +11,15 @@
           "display_name": "Release Builds",
           "identifier": "release",
           "description": "Release builds for PlotSquared 1.13+. Requires WorldEdit 7 Beta-5!",
+          "wiki": [
+            "1. Download PlotSquared using one of the links above",
+            "2. Download any optional dependencies",
+            "    * [PlotUpload](https://github.com/boy0001/plotupload/archive/master.zip) - Web interface that supports multiple servers",
+            "    * [PlotWebPHP](https://github.com/IntellectualSites/plotwebphp/archive/master.zip) - Web interface that supports plot searching",
+            "    * [Plot2Dynmap](https://github.com/IntellectualSites/plot2dynmap/releases) - Dynmap addon",
+            "    * [PlotSquared-Expansion](https://github.com/IntellectualSites/PlotSquared-Expansion) - PlotSquared placeholders for PAPI",
+            "3. See the [configuration instructions](https://github.com/IntellectualSites/PlotSquared/wiki/Installation)"
+          ],
           "versions": [
             {
               "identifier": "bukkit",
@@ -23,6 +32,15 @@
           "display_name": "Development Builds",
           "identifier": "dev",
           "description": "Development builds for PlotSquared 1.13+. Requires WorldEdit 7 Beta-5!",
+          "wiki": [
+            "1. Download PlotSquared using one of the links above",
+            "2. Download any optional dependencies",
+            "    * [PlotUpload](https://github.com/boy0001/plotupload/archive/master.zip) - Web interface that supports multiple servers",
+            "    * [PlotWebPHP](https://github.com/IntellectualSites/plotwebphp/archive/master.zip) - Web interface that supports plot searching",
+            "    * [Plot2Dynmap](https://github.com/IntellectualSites/plot2dynmap/releases) - Dynmap addon",
+            "    * [PlotSquared-Expansion](https://github.com/IntellectualSites/PlotSquared-Expansion) - PlotSquared placeholders for PAPI",
+            "3. See the [configuration instructions](https://github.com/IntellectualSites/PlotSquared/wiki/Installation)"
+          ],
           "versions": [
             {
               "identifier": "bukkit",
@@ -41,6 +59,18 @@
           "identifier": "dev",
           "display_name": "Development Builds",
           "description": "Development builds for PlotSquared <1.12",
+          "wiki": [
+            "1. Download PlotSquared using one of the links above",
+            "2. Download any optional dependencies",
+            "    * [PlotUpload](https://github.com/boy0001/plotupload/archive/master.zip) - Web interface that supports multiple servers",
+            "    * [PlotWebPHP](https://github.com/IntellectualSites/plotwebphp/archive/master.zip) - Web interface that supports plot searching",
+            "    * [Plot2Dynmap](http://www.spigotmc.org/resources/plot2dynmap.1292/) - Dynmap addon",
+            "    * [HoloPlots](https://www.spigotmc.org/resources/holoplots.4880/) - Plot holograms",
+            "    * [PlotHider](https://www.spigotmc.org/resources/plot-hider.20701/) - Make plots invisible",
+            "    * [FAWE](https://empcraft.com/fawe/download?bukkit) - WorldEdit for plots",
+            "    * [PlotSquared-Expansion](https://github.com/IntellectualSites/PlotSquared-Expansion) - PlotSquared placeholders for PAPI",
+            "3. See the [configuration instructions](https://github.com/IntellectualSites/PlotSquared/wiki/Installation)"
+          ],
           "versions": [
             {
               "identifier": "bukkit",

@@ -80,7 +80,30 @@ public class Project extends Node<Project.Target> {
                     final VersionSchema versionSchema = new VersionSchema(versionIdentifier, versionPattern, displayName);
                     versionSchemas.put(versionIdentifier, versionSchema);
                 }
-                final Type type = new Type(typeIdentifier, typeJobName, typeJSON.getOrDefault("description", "").toString(), displayName, versionSchemas);
+
+                String wiki;
+                if (typeJSON.containsKey("wiki")) {
+                    final Object wikiRaw = typeJSON.get("wiki");
+                    if (wikiRaw instanceof String) {
+                        wiki = wikiRaw.toString();
+                    } else {
+                        final JSONArray array = (JSONArray) wikiRaw;
+                        final StringBuilder builder = new StringBuilder();
+                        final Iterator<Object> iterator = array.iterator();
+                        while (iterator.hasNext()) {
+                            builder.append(iterator.next());
+                            if (iterator.hasNext()) {
+                                builder.append("\n");
+                            }
+                        }
+                        wiki = builder.toString();
+                    }
+                } else {
+                    wiki = "";
+                }
+
+                final Type type = new Type(typeIdentifier, typeJobName, typeJSON.getOrDefault("description", "").toString(),
+                    wiki, typeDisplayName, versionSchemas);
                 types.put(typeIdentifier, type);
             }
             final Target target = new Target(targetIdentifier, targetDisplayName, types);
@@ -161,6 +184,8 @@ public class Project extends Node<Project.Target> {
         private final String identifier;
         private final String jobName;
         private final String description;
+        private final String wiki;
+
         @Getter private final String displayName;
         private final Map<String, VersionSchema> versionSchemas;
 
@@ -217,7 +242,8 @@ public class Project extends Node<Project.Target> {
         @Override protected JSONObject generateJSON() {
             return KvantumJsonFactory.toJSONObject(
                 MapBuilder.<String, Object>newTreeMap().put("builds",
-                    KvantumJsonFactory.toJsonArray(this.builds.keySet())).put("description", description).get());
+                    KvantumJsonFactory.toJsonArray(this.builds.keySet())).put("description", description)
+                    .put("wiki", wiki).get());
         }
 
         @Override protected Build getChild(String key) {
