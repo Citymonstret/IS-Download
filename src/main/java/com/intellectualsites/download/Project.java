@@ -77,7 +77,8 @@ public class Project extends Node<Project.Target> {
                     final String versionIdentifier = versionJSON.get("identifier").toString();
                     final Pattern versionPattern = Pattern.compile(versionJSON.get("artifact_pattern").toString());
                     final String displayName = versionJSON.getOrDefault("display_name", versionIdentifier).toString();
-                    final VersionSchema versionSchema = new VersionSchema(versionIdentifier, versionPattern, displayName);
+                    final boolean visible = (boolean) versionJSON.getOrDefault("visible", true);
+                    final VersionSchema versionSchema = new VersionSchema(versionIdentifier, versionPattern, displayName, visible);
                     versionSchemas.put(versionIdentifier, versionSchema);
                 }
 
@@ -213,7 +214,7 @@ public class Project extends Node<Project.Target> {
                     artifactLoop: for (final ArtifactDescription description : buildInfo.getArtifacts()) {
                         if (versionSchema.getValue().artifactPattern.matcher(description.getFileName()).matches()) {
                             final Version version = new Version(versionSchema.getKey(),
-                                description.getFileName(), description.getUrl(), versionSchema.getValue().getDisplayName());
+                                description.getFileName(), description.getUrl(), versionSchema.getValue().getDisplayName(), versionSchema.getValue().isVisible());
                             versions.put(versionSchema.getKey(), version);
                             break artifactLoop;
                         }
@@ -275,6 +276,7 @@ public class Project extends Node<Project.Target> {
             private final String fileName;
             @Getter private final String downloadUrl;
             @Getter private final String displayName;
+            @Getter private final boolean visible;
 
             @Override protected String getIdentifier() {
                 return this.identifier;
@@ -283,7 +285,7 @@ public class Project extends Node<Project.Target> {
             @Override protected JSONObject generateJSON() {
                 return KvantumJsonFactory.toJSONObject(
                     MapBuilder.<String, Object>newTreeMap().put("fileName", this.fileName)
-                        .put("download", this.downloadUrl).get());
+                        .put("download", this.downloadUrl).put("visible", this.visible).get());
             }
 
             @Override protected Void getChild(final String key) {
@@ -296,6 +298,7 @@ public class Project extends Node<Project.Target> {
         private final String identifier;
         private final Pattern artifactPattern;
         @Getter private final String displayName;
+        @Getter private final boolean visible;
     }
 
 }

@@ -24,6 +24,11 @@
             {
               "identifier": "bukkit",
               "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[0-9.-]+).jar$"
+            },
+            {
+              "identifier": "bukkit-hash",
+              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[0-9.-]+).jar.MD5$",
+              "visible": false
             }
           ]
         },
@@ -77,12 +82,27 @@
               "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[A-Za-z0-9.-]+).jar$"
             },
             {
+              "identifier": "bukkit-hash",
+              "artifact_pattern": "^PlotSquared-Bukkit-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+              "visible": false
+            },
+            {
               "identifier": "nukkit",
-              "artifact_pattern": "^PlotSquared-Nukkit-(?<version>[A-Za-z0-9.-]+).jar$"
+              "artifact_pattern": "^PlotSquared-Nukkit-(?<version>[A-Za-z0-9.-]+).jar$",
+            },
+            {
+              "identifier": "nukkit-hash",
+              "artifact_pattern": "^PlotSquared-Nukkit-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+              "visible": false
             },
             {
               "identifier": "sponge",
               "artifact_pattern": "^PlotSquared-Sponge-(?<version>[A-Za-z0-9.-]+).jar$"
+            },
+            {
+              "identifier": "sponge-hash",
+              "artifact_pattern": "^PlotSquared-Sponge-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+              "visible": false
             }
           ]
         }

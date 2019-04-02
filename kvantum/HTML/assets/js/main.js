@@ -77,6 +77,9 @@ function loadProjects() {
                                                 let versions = JSON.parse(versionsRaw.versions);
                                                 versions.forEach(version => {
                                                     readFile(project, target, type, build, version, function(fileData) {
+                                                        if (!fileData.visible) {
+                                                            return;
+                                                        }
                                                         let fileDisplay = getFileDisplay(fileData.fileName);
                                                         fileDisplay.find('.file-build').text(buildDisplayName);
                                                         fileDisplay.find('.file-target').text(targetDisplayName);

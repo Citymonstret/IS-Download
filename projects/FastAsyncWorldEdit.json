@@ -111,7 +111,67 @@
               {
                 "identifier": "nukkit",
                 "display_name": "Nukkit",
-                "artifact_pattern": "^FastAsyncWorldEdit-nukkit-(?<version>[A-Za-z0-9.-]+).jar$"
+                "artifact_pattern": "^FastAsyncWorldEdit-nukkit-(?<version>[A-Za-z0-9.-]+).jar$",
+              },
+              {
+                "identifier": "bukkit-hash",
+                "display_name": "Bukkit",
+                "artifact_pattern": "^FastAsyncWorldEdit-bukkit-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "bukkit-FastAsyncVoxelSniper-hash",
+                "display_name": "Bukkit-FastAsyncVoxelSniper",
+                "artifact_pattern": "^FastAsyncVoxelSniper-favs-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "forge-189-hash",
+                "display_name": "Forge-1.8.9",
+                "artifact_pattern": "^FastAsyncWorldEdit-forge189-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "forge-194-hash",
+                "display_name": "Forge-1.9.4",
+                "artifact_pattern": "^FastAsyncWorldEdit-forge194-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "forge-110-hash",
+                "display_name": "Forge-1.10",
+                "artifact_pattern": "^FastAsyncWorldEdit-forge110-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "forge-111-hash",
+                "display_name": "Forge-1.11",
+                "artifact_pattern": "^FastAsyncWorldEdit-forge111-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "forge-112-hash",
+                "display_name": "Forge-1.12",
+                "artifact_pattern": "^FastAsyncWorldEdit-forge112-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "sponge-111-hash",
+                "display_name": "Sponge-1.11",
+                "artifact_pattern": "^FastAsyncWorldEdit-sponge111-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "sponge-112-hash",
+                "display_name": "Sponge-1.12",
+                "artifact_pattern": "^FastAsyncWorldEdit-sponge112-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
+              },
+              {
+                "identifier": "nukkit-hash",
+                "display_name": "Nukkit",
+                "artifact_pattern": "^FastAsyncWorldEdit-nukkit-(?<version>[A-Za-z0-9.-]+).jar.MD5$",
+                "visible": false
               }
             ]
           }
