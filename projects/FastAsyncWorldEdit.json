@@ -14,7 +14,7 @@
               "1. Download FAWE (and optionally FAVS) using one of the links above.",
               "    * **Spigot:** Do *not* install WorldEdit",
               "2. Download any optional dependencies",
-              "    * [Web Iterface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
+              "    * [Web Interface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
               "    * [Asset Interface](https://empcraft.com/assetpack/source.zip) - To host private assets",
               "3. Configure the plugin. You can find the configuration file at `/plugins/FastAsyncWorldEdit/config.yml`",
               "4. Give players the required permissions: [[General FAWE permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Permissions)], [[FAWE Commands / Commands permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Commands)]"
@@ -46,7 +46,7 @@
               "1. Download FAWE (and optionally FAVS) using one of the links above.",
               "    * **Spigot:** Do *not* install WorldEdit",
               "2. Download any optional dependencies",
-              "    * [Web Iterface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
+              "    * [Web Interface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
               "    * [Asset Interface](https://empcraft.com/assetpack/source.zip) - To host private assets",
               "3. Configure the plugin. You can find the configuration file at `/plugins/FastAsyncWorldEdit/config.yml`",
               "4. Give players the required permissions: [[General FAWE permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Permissions)], [[FAWE Commands / Commands permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Commands)]"
