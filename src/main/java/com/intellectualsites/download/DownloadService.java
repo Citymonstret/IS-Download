@@ -30,7 +30,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import xyz.kvantum.server.api.logging.Logger;
 import xyz.kvantum.server.api.util.AutoCloseable;
-import xyz.kvantum.server.implementation.QuickStart;
 
 import java.io.File;
 import java.io.IOException;
