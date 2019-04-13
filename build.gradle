@@ -41,6 +41,6 @@ repositories {
 
 dependencies {
     compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.27.2.1'
-    compile name: 'Implementation-all'
-    implementation 'com.github.Sauilitired:Jenkins4J:2.0-SNAPSHOT'
+    compile name: 'Standalone-all'
+    implementation 'com.github.Sauilitired:Jenkins4J:3.0-SNAPSHOT'
 }
