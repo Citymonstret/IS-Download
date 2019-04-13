@@ -1,6 +1,6 @@
 {
     "jenkins_base": "https://ci.athion.net/",
-    "display_name": "FastAsyncWorldEdit",,
+    "display_name": "FastAsyncWorldEdit",
     "targets": [
       {
         "identifier": "new",
@@ -14,7 +14,39 @@
               "1. Download FAWE (and optionally FAVS) using one of the links above.",
               "    * **Spigot:** Do *not* install WorldEdit",
               "2. Download any optional dependencies",
-              "    * [Web Iterface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
+              "    * [Web Interface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
+              "    * [Asset Interface](https://empcraft.com/assetpack/source.zip) - To host private assets",
+              "3. Configure the plugin. You can find the configuration file at `/plugins/FastAsyncWorldEdit/config.yml`",
+              "4. Give players the required permissions: [[General FAWE permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Permissions)], [[FAWE Commands / Commands permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Commands)]"
+            ],
+            "versions": [
+              {
+                "identifier": "bukkit",
+                "display_name": "Bukkit",
+                "artifact_pattern": "^FastAsyncWorldEdit-bukkit-(?<version>[0-9.-]+).jar$"
+              },
+              {
+                "identifier": "bukkit-FastAsyncVoxelSniper",
+                "display_name": "Bukkit-FastAsyncVoxelSniper",
+                "artifact_pattern": "^FastAsyncVoxelSniper-favs-(?<version>[0-9.-]+).jar$"
+                }
+            ]
+          }
+        ]
+      },
+      {
+        "identifier": "breaking",
+        "display_name": "Breaking",
+        "types": [
+          {
+            "job_name": "FastAsyncWorldEdit-Breaking",
+            "identifier": "dev",
+            "description": "Development builds for FastAsyncWorldEdit and FastAsyncVoxelSniper 1.13+ Breaking builds",
+            "wiki": [
+              "1. Download FAWE (and optionally FAVS) using one of the links above.",
+              "    * **Spigot:** Do *not* install WorldEdit",
+              "2. Download any optional dependencies",
+              "    * [Web Interface](https://www.dropbox.com/s/pyumuk30ce1ocdi/FaweUpload.zip?dl=1) - To use in place of the public one",
               "    * [Asset Interface](https://empcraft.com/assetpack/source.zip) - To host private assets",
               "3. Configure the plugin. You can find the configuration file at `/plugins/FastAsyncWorldEdit/config.yml`",
               "4. Give players the required permissions: [[General FAWE permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Permissions)], [[FAWE Commands / Commands permissions](https://github.com/boy0001/FastAsyncWorldedit/wiki/Commands)]"
